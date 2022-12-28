@@ -12,10 +12,13 @@ public class Stack {
     }
 
     public int pop(){
-        if(counter<0) System.out.println("free");
+        if(counter<0){
+            System.out.println("free");
+            return 0;
+        }
         else {
             return stck[counter--];
         }
-        return 0;
+
     }
 }
