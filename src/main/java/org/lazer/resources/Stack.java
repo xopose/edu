@@ -1,8 +1,12 @@
 package org.lazer.resources;
 
-public class Stack {
-    public int[] stck = new int[10];
-    int counter = -1;
+public class Stack implements IntStack {
+    private int[] stck;
+    private int counter = -1;
+
+    public Stack(int stck){
+        this.stck = new int[stck];
+    }
 
     public void push(int i){
         if(counter==9) System.out.println("overflow");
