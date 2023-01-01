@@ -23,4 +23,8 @@ public class CurrentThread_2 implements Runnable{
         System.out.println("Завершение дочернего потока");
 
     }
+
+    public String getName(){
+        return name;
+    }
 }

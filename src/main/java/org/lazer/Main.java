@@ -10,5 +10,24 @@ public class Main {
         myThread_1.t.start();
         myThread_2.t.start();
         myThread_3.t.start();
+
+        System.out.println("Поток   " + myThread_1.getName() + "   " + myThread_1.t.isAlive());
+        System.out.println("Поток   " + myThread_2.getName() + "   " + myThread_2.t.isAlive());
+        System.out.println("Поток   " + myThread_3.getName() + "   " + myThread_3.t.isAlive());
+
+        try{
+            System.out.println("Ожидание завершения потоков");
+            myThread_1.t.join();
+            myThread_2.t.join();
+            myThread_3.t.join();
+        }
+        catch (InterruptedException e){
+            System.out.println("Главный поток прерван");
+        }
+        System.out.println("Поток   " + myThread_1.getName() + "   " + myThread_1.t.isAlive());
+        System.out.println("Поток   " + myThread_2.getName() + "   " + myThread_2.t.isAlive());
+        System.out.println("Поток   " + myThread_3.getName() + "   " + myThread_3.t.isAlive());
+        System.out.println("Завершение главного потока");
+
     }
 }
