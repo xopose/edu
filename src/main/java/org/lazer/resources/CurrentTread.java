@@ -3,12 +3,11 @@ package org.lazer.resources;
 public class CurrentTread {
     public void CurTread(){
         Thread t = Thread.currentThread();
-        System.out.println("Текущий поток:  " + t);
         t.setName("Thread_1");
-        System.out.println("Новое имя:      " + t);
+        System.out.println("Главный поток:      " + t);
         try{
             for (int i = 5; i>0; i--){
-                System.out.println(i);
+                System.out.println("Главный поток:      " + i);
                 Thread.sleep(1000);
             }
 
