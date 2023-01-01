@@ -1,10 +1,9 @@
 package org.lazer.resources;
 
-public class CurrentThread_2 implements Runnable{
-    public Thread t;
+public class CurrentThread_2 extends Thread{
     public CurrentThread_2(){
-        t = new Thread(this, "Demo Thread");
-        System.out.println("Дочерний поток: " + t);
+        super("Demo Thread");
+        System.out.println("Дочерний поток: " + this);
 
     }
     public void run(){
