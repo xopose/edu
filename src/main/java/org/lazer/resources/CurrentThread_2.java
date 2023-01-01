@@ -2,7 +2,7 @@ package org.lazer.resources;
 
 public class CurrentThread_2 implements Runnable{
     public Thread t;
-    public void NewThread(){
+    public CurrentThread_2(){
         t = new Thread(this, "Demo Thread");
         System.out.println("Дочерний поток: " + t);
 
