@@ -14,9 +14,7 @@ public class Stack implements IntStack {
     public void push(int i){
         if(counter==stck.length-1){
             int[] buff = new int[stck.length*2];
-            for(int a = 0; a< stck.length; a++){
-                buff[a]=stck[a];
-            }
+            System.arraycopy(stck, 0, buff, 0, stck.length);
             stck=buff;
             stck[++counter] = i;
         }
