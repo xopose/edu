@@ -8,8 +8,18 @@ public class Stack implements IntStack {
         this.stck = new int[stck];
     }
 
+    public int getLenght(){
+        return stck.length;
+    }
     public void push(int i){
-        if(counter==9) System.out.println("overflow");
+        if(counter==stck.length-1){
+            int[] buff = new int[stck.length*2];
+            for(int a = 0; a< stck.length; a++){
+                buff[a]=stck[a];
+            }
+            stck=buff;
+            stck[++counter] = i;
+        }
         else {
             stck[++counter] = i;
         }
@@ -23,6 +33,12 @@ public class Stack implements IntStack {
         else {
             return stck[counter--];
         }
+    }
 
+    public void clear(){
+        for(int a = 0; a< stck.length; a++){
+            stck[a]= 0;
+        }
+        counter=-1;
     }
 }

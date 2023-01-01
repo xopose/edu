@@ -6,14 +6,21 @@ import org.lazer.resources.Weight;
 
 public class Main {
     public static void main(String[] args) {
-        Stack stk = new Stack(10);
-        Box box1 = new Box();
-        Box box2 = new Box(5, 7, 8);
-        Box box3 = new Box(9);
-        System.out.println(box1.vol());
-        System.out.println(box2.vol());
-        System.out.println(box3.vol());
-        var myBox = new Weight(5, 7, 2, 6.35);
-        myBox.print();
+        Stack stk = new Stack(3);
+        stk.push(2);
+        stk.push(2);
+        stk.push(2);
+        stk.push(5);
+        stk.push(2);
+        stk.push(2);
+        stk.push(2);
+        for (int i =0; i< stk.getLenght(); i++){
+            System.out.println(stk.pop());
+        }
+        stk.clear();
+        for (int i =0; i< stk.getLenght(); i++){
+            System.out.println(stk.pop());
+        }
+        System.out.println(stk.getLenght());
     }
 }
