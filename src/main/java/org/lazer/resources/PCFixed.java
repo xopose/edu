@@ -3,7 +3,7 @@ package org.lazer.resources;
 class Q{
     int n;
     boolean valueSet = false;
-    synchronized int get(){
+    synchronized void get(){
         while (!valueSet){
             try{
                 wait();
@@ -14,7 +14,6 @@ class Q{
         System.out.println("Получено:   " + n);
         valueSet = false;
         notify();
-        return n;
     }
 
     synchronized void put(int n){

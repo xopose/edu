@@ -4,30 +4,31 @@ import org.lazer.resources.*;
 
 public class Main {
     public static void main(String[] args) {
-        var myThread_1 = new CurrentThread_2("one");
-        var myThread_2 = new CurrentThread_2("two");
-        var myThread_3 = new CurrentThread_2("three");
-        myThread_1.t.start();
-        myThread_2.t.start();
-        myThread_3.t.start();
+        ResumeSuspend ob1 = new ResumeSuspend("one");
+        ResumeSuspend ob2 = new ResumeSuspend("two");
 
-        System.out.println("Поток   " + myThread_1.getName() + "   " + myThread_1.t.isAlive());
-        System.out.println("Поток   " + myThread_2.getName() + "   " + myThread_2.t.isAlive());
-        System.out.println("Поток   " + myThread_3.getName() + "   " + myThread_3.t.isAlive());
-
-        try{
-            System.out.println("Ожидание завершения потоков");
-            myThread_1.t.join();
-            myThread_2.t.join();
-            myThread_3.t.join();
+        ob1.t.start();
+        ob2.t.start();
+        try {
+            Thread.sleep(1000);
+            ob1.mySuspend();
+            System.out.println("Приостановка потока one");
+            Thread.sleep(1000);
+            ob1.myResume();
+            System.out.println("Возобновление потока one");
+            ob2.mySuspend();
+            System.out.println("Приостановка потока two");
+            Thread.sleep(1000);
+            ob2.myResume();
+            System.out.println("Возобновление потока two");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
-        catch (InterruptedException e){
-            System.out.println("Главный поток прерван");
+        try {
+            ob1.t.join();
+            ob2.t.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
-        System.out.println("Поток   " + myThread_1.getName() + "   " + myThread_1.t.isAlive());
-        System.out.println("Поток   " + myThread_2.getName() + "   " + myThread_2.t.isAlive());
-        System.out.println("Поток   " + myThread_3.getName() + "   " + myThread_3.t.isAlive());
-        System.out.println("Завершение главного потока");
-
     }
 }
