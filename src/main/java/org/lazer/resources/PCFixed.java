@@ -65,6 +65,11 @@ class Consumer implements Runnable{
     }
 }
 
+/**
+ * Тут мы реализовали синхронную очередь
+ * между производителем и получателем<p>
+ *
+ */
 public class PCFixed {
     public static void main(String[] args){
         Q q = new Q();
