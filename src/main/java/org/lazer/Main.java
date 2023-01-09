@@ -2,33 +2,32 @@ package org.lazer;
 
 import org.lazer.resources.*;
 
-public class Main {
-    public static void main(String[] args) {
-        ResumeSuspend ob1 = new ResumeSuspend("one");
-        ResumeSuspend ob2 = new ResumeSuspend("two");
+import java.lang.reflect.Method;
 
-        ob1.t.start();
-        ob2.t.start();
-        try {
-            Thread.sleep(1000);
-            ob1.mySuspend();
-            System.out.println("Приостановка потока one");
-            Thread.sleep(1000);
-            ob1.myResume();
-            System.out.println("Возобновление потока one");
-            ob2.mySuspend();
-            System.out.println("Приостановка потока two");
-            Thread.sleep(1000);
-            ob2.myResume();
-            System.out.println("Возобновление потока two");
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+import static org.lazer.Main.Meta.myMeth;
+
+public class Main {
+    static class Meta{
+        @Annotatoin(str = "Annotation", val = 100)
+        public static void myMeth(){
+            Meta ob = new Meta();
+            //Получить аннотацию этого метода и отобразить значения ее членов
+            try {
+                //Для начала получить объект Class, который представляет данный класс
+                Class<?> c = ob.getClass();
+                //Теперь получить объект Method, который представляет этот метод
+                Method m = c.getMethod("myMeth");
+                //Получить аннотацию для этого класса
+                Annotatoin anno = m.getAnnotation(Annotatoin.class);
+                //Вывод значений
+                System.out.println(anno.str() + " " + anno.val());
+            }
+            catch (NoSuchMethodException e){
+                System.out.println("NoSuchMethodException");
+            }
         }
-        try {
-            ob1.t.join();
-            ob2.t.join();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+    }
+    public static void main(String[] args) {
+        myMeth();
     }
 }
