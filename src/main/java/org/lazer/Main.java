@@ -2,22 +2,29 @@ package org.lazer;
 
 import org.lazer.resources.*;
 
-import java.lang.reflect.Method;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.*;
 
+@What(description = "Annotation class")
+@Annotatoin(str = "Annotation class", val = 10)
 public class Main {
-        @Annotatoin(str = "Annotation", val = 100)
+        @What(description = "Annotation method")
+        @Annotatoin(str = "Annotation method", val = 100)
         public static void myMeth(){
             Main ob = new Main();
             //Получить аннотацию этого метода и отобразить значения ее членов
             try {
-                //Для начала получить объект Class, который представляет данный класс
-                Class<?> c = ob.getClass();
-                //Теперь получить объект Method, который представляет этот метод
-                Method m = c.getMethod("myMeth");
-                //Получить аннотацию для этого класса
-                Annotatoin anno = m.getAnnotation(Annotatoin.class);
-                //Вывод значений
-                System.out.println(anno.str() + " " + anno.val());
+                Annotation[] annos = ob.getClass().getAnnotations();
+                System.out.println("Все аннотации для Main");
+                for(Annotation a: annos){
+                    System.out.println(a);
+                }
+                Method m = ob.getClass().getMethod("myMeth");
+                annos = m.getAnnotations();
+                System.out.println("Все аннотации для myMeth");
+                for (Annotation a: annos){
+                    System.out.println(a);
+                }
             }
             catch (NoSuchMethodException e){
                 System.out.println("NoSuchMethodException");
