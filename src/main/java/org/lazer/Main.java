@@ -4,13 +4,10 @@ import org.lazer.resources.*;
 
 import java.lang.reflect.Method;
 
-import static org.lazer.Main.Meta.myMeth;
-
 public class Main {
-    static class Meta{
         @Annotatoin(str = "Annotation", val = 100)
         public static void myMeth(){
-            Meta ob = new Meta();
+            Main ob = new Main();
             //Получить аннотацию этого метода и отобразить значения ее членов
             try {
                 //Для начала получить объект Class, который представляет данный класс
@@ -25,7 +22,6 @@ public class Main {
             catch (NoSuchMethodException e){
                 System.out.println("NoSuchMethodException");
             }
-        }
     }
     public static void main(String[] args) {
         myMeth();
