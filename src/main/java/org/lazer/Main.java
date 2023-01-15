@@ -7,14 +7,14 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        int c;
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in, System.console().charset()));
         System.out.println("Ввод");
-
+        String c;
         do{
-            c = (int) br.read();
+            c = br.readLine();
             System.out.println(c);
         }
-        while (c!='`');
+        while (!c.equals("aaaa"));
     }
 }
