@@ -2,16 +2,29 @@ package org.lazer;
 
 import org.lazer.resources.*;
 
-interface NumericTest{
-    boolean test(int n, int d);
+interface Test<T>{
+    T test(T n);
 }
 
 
 public class Main {
     public static void main(String[] args) {
-        NumericTest isEven = (n, d) -> (n%d)==0;
-        if (isEven.test(10, 2)) System.out.println("2 является множителем 10");
-        if (isEven.test(9,2)) System.out.println("2 не является множителем 9");
-        if (isEven.test(9,3)) System.out.println("3 является множителем 9");
+        Test<String> reverse = (str) -> {
+            String result = "";
+            for (int i = str.length()-1; i>=0; i--){
+                result +=str.charAt(i);
+            }
+            return result;
+        };
+        System.out.println(reverse.test("lambda"));
+
+        Test<Integer> factorial = (n) -> {
+            int result = 1;
+            for (int i = 1; i<=n; i++){
+                result *= i;
+            }
+            return result;
+        };
+        System.out.println(factorial.test(5));
     }
 }
