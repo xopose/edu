@@ -2,29 +2,34 @@ package org.lazer;
 
 import org.lazer.resources.*;
 
-interface Test<T>{
-    T test(T n);
+interface StringFunc{
+    String func(String n);
 }
 
 
 public class Main {
+    static String stringOp(StringFunc sf, String s){
+        return sf.func(s);
+    }
     public static void main(String[] args) {
-        Test<String> reverse = (str) -> {
-            String result = "";
-            for (int i = str.length()-1; i>=0; i--){
-                result +=str.charAt(i);
-            }
-            return result;
-        };
-        System.out.println(reverse.test("lambda"));
+        String inStr = "Lambdas add power to Java";
+        String outStr;
 
-        Test<Integer> factorial = (n) -> {
-            int result = 1;
-            for (int i = 1; i<=n; i++){
-                result *= i;
+        System.out.println("Исходная строка " + inStr);
+        outStr = stringOp((str) -> (str.toUpperCase()), inStr);
+        System.out.println("строка в верхнем регистре   " + outStr);
+
+        outStr = stringOp((str) -> {
+            String result = "";
+            for (int i=0; i<=str.length()-1; i++){
+                if (str.charAt(i)!=' '){
+                    result += str.charAt(i);
+                }
             }
             return result;
-        };
-        System.out.println(factorial.test(5));
+        }, inStr);
+        System.out.println(outStr);
+
+
     }
 }
