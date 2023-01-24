@@ -2,34 +2,23 @@ package org.lazer;
 
 import org.lazer.resources.*;
 
-interface StringFunc{
-    String func(String n);
+interface DoubleNumericArrayFunc{
+    double func(double[] n) throws EmptyArrayExeption;
 }
 
 
 public class Main {
-    static String stringOp(StringFunc sf, String s){
-        return sf.func(s);
-    }
-    public static void main(String[] args) {
-        String inStr = "Lambdas add power to Java";
-        String outStr;
-
-        System.out.println("Исходная строка " + inStr);
-        outStr = stringOp((str) -> (str.toUpperCase()), inStr);
-        System.out.println("строка в верхнем регистре   " + outStr);
-
-        outStr = stringOp((str) -> {
-            String result = "";
-            for (int i=0; i<=str.length()-1; i++){
-                if (str.charAt(i)!=' '){
-                    result += str.charAt(i);
-                }
+    public static void main(String[] args) throws EmptyArrayExeption {
+        double[] values = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        DoubleNumericArrayFunc avg = (n) -> {
+            double sum=0;
+            if (n.length==0) throw new EmptyArrayExeption();
+            for (int i=0; i<n.length; i++){
+                sum += n[i];
             }
-            return result;
-        }, inStr);
-        System.out.println(outStr);
-
-
+            return sum / n.length;
+        };
+        System.out.println(avg.func(values));
+        System.out.println(avg.func(new double[0]));
     }
 }
