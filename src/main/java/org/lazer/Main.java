@@ -1,24 +1,31 @@
 package org.lazer;
 
+import org.jetbrains.annotations.NotNull;
 import org.lazer.resources.*;
 
-interface DoubleNumericArrayFunc{
-    double func(double[] n) throws EmptyArrayExeption;
+interface StringFunc{
+    String func(String n);
 }
 
+class MyStringOps{
+    static String strReverce(String s){
+        String result = "";
+        for (int i = s.length()-1; i>=0; i--){
+            result += s.charAt(i);
+        }
+        return result;
+    }
+}
 
 public class Main {
-    public static void main(String[] args) throws EmptyArrayExeption {
-        double[] values = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-        DoubleNumericArrayFunc avg = (n) -> {
-            double sum=0;
-            if (n.length==0) throw new EmptyArrayExeption();
-            for (int i=0; i<n.length; i++){
-                sum += n[i];
-            }
-            return sum / n.length;
-        };
-        System.out.println(avg.func(values));
-        System.out.println(avg.func(new double[0]));
+    static String stringOp(StringFunc sf, String s){
+        return sf.func(s);
+    }
+    public static void main(String[] args){
+        String inStr = "Lambdas add power to Java";
+        String outStr;
+
+        outStr = stringOp(MyStringOps::strReverce, inStr);
+        System.out.println(outStr);
     }
 }
