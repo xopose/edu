@@ -8,7 +8,7 @@ interface StringFunc{
 }
 
 class MyStringOps{
-    static String strReverce(String s){
+    String strReverce(String s){
         String result = "";
         for (int i = s.length()-1; i>=0; i--){
             result += s.charAt(i);
@@ -25,7 +25,8 @@ public class Main {
         String inStr = "Lambdas add power to Java";
         String outStr;
 
-        outStr = stringOp(MyStringOps::strReverce, inStr);
+        MyStringOps myStringOps= new MyStringOps();
+        outStr = stringOp(myStringOps::strReverce, inStr);
         System.out.println(outStr);
     }
 }
